@@ -1,0 +1,4 @@
+{
+  "entryPoint":"./ui/index.jsx",
+  "outputDir":"public/dist"
+}

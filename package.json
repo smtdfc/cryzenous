@@ -1,0 +1,25 @@
+{
+  "name": "cryzenous",
+  "version": "0.0.1",
+  "main": "index.jsx",
+  "scripts": {
+    "build:dev": "rumious build:dev",
+    "build:prod": "export NODE_ENV='production' && rumious build:prod",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "rumious": "*"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.23.0",
+    "globals": "^16.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rumious-babel-preset": "*",
+    "rumious-builder": "*",
+    "eslint": "^9.19.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": ""
+}

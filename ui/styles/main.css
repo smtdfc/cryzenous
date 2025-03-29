@@ -1,0 +1,236 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f8f9fa;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+cryzenous-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap:10px;
+}
+
+cryzenous-node {
+  width: 350px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+cryzenous-node-header {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+cryzenous-node-header .node-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+cryzenous-node-header .node-subtitle {
+  font-size: 12px;
+  color: #666;
+}
+
+cryzenous-node-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+cryzenous-node-arg {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+cryzenous-node-arg .node-arg-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #444;
+}
+
+cryzenous-node-arg .node-arg-value {
+  font-size: 14px;
+  color: #222;
+  background: #e9ecef;
+  padding: 5px;
+  border-radius: 4px;
+  min-height: 27px;
+}
+
+cryzenous-node-arg-flow {
+  margin-top: 5px;
+}
+
+cryzenous-node-arg cryzenous-node {
+  width: 100% !important;
+}
+
+cryzenous-node-arg cryzenous-flow {
+  margin: 5px;
+}
+
+cryzenous-arrow {
+  font-size: 24px;
+  color: #666;
+}
+
+.material-icons.arrow {
+  font-size: 24px;
+  color: #666;
+}
+
+.node-arg-value:focus {
+  outline: 2px solid #6C78FF;
+}
+
+.cryzenous-btn {
+  background: none;
+}
+
+.cryzenous-btn-icon {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  padding: 0.8rem;
+  border: none;
+}
+
+.cryzenous-btn-sm {
+  font-size: 15px!important;
+  padding: 0.3rem;
+}
+
+.cryzenous-btn-md {
+  font-size: 18px;
+  padding: 0.5rem;
+}
+
+cryzenous-btn-group {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+  margin-top: 20px;
+}
+
+.cryzenous-error-icon {
+  margin-left: 3px;
+  font-size: 12px !important;
+  color: red;
+}
+
+.d-none {
+  display: none!important;
+}
+
+cryzenous-node-selector {
+  display: block;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 2;
+  width: 100%;
+  transform: translateX(-100%);
+  transition: transform ease-in-out 0.3s;
+}
+
+cryzenous-node-selector.open {
+  transform: translateX(0%);
+}
+
+cryzenous-node-selector .cryzenous-header {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+cryzenous-node-selector .cryzenous-btn {
+  margin-left: auto;
+}
+
+@media (min-width: 48rem) {
+  cryzenous-node-selector {
+    width: 30% !important;
+  }
+}
+
+details.cryzenous-tree {
+  padding: 5px;
+  background: #f9f9f9;
+  margin: 5px 0;
+}
+
+.cryzenous-tree summary {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px;
+}
+
+
+details.cryzenous-tree[open] summary {
+  color: #007bff;
+}
+
+.cryzenous-tree .cryzenous-tree-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 8px;
+  padding-left: 10px;
+}
+
+.cryzenous-tree-items>span {
+  display: block;
+  padding: 5px;
+}
+
+.cryzenous-tree-items>span:hover {
+  background: #e0e0e0;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+    url(./MaterialIconsOutlined-Regular.otf) format('truetype');
+}
+
+.material-symbols-outlined,
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
