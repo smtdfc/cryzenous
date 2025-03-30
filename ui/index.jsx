@@ -1,8 +1,23 @@
 import { RumiousApp } from 'rumious';
-import { FlowEditorComponent } from './components/FlowEditorComponent.jsx';
-import { Modules } from './data/modules.js';
-import { CryzenousFlow } from './models/CryzenousFlow.js';
+import { Navbar } from './components/Navbar.jsx';
+import initRouter from "./router/index.js";
+import { RumiousUIModule } from 'rumious-ui';
 import "./styles/main.css";
+import "rumious-ui/dist/index.css";
+
 
 const app = new RumiousApp(document.getElementById("root"));
-app.render(<FlowEditorComponent modules={Modules} flow={new CryzenousFlow([])} />);
+app.ui = RumiousUIModule.init(app);
+initRouter(app);
+//<FlowEditorComponent modules={Modules} flow={new CryzenousFlow([])} />
+
+app.render(
+  <>
+    <Navbar/>
+    <div class="cryzenous-app-container">
+      {app.router.rootInjector}
+    </div>
+  </>
+);
+
+app.router.start();

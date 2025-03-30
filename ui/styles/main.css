@@ -5,7 +5,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-.container {
+.cryzenous-editor-container {
   width: 100vw;
   height: 100vh;
   background-color: #f8f9fa;
@@ -19,7 +19,7 @@ cryzenous-flow {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap:10px;
+  row-gap: 10px;
 }
 
 cryzenous-node {
@@ -33,10 +33,13 @@ cryzenous-node {
 }
 
 cryzenous-node-header {
+  background: white;
   display: flex;
   flex-direction: column;
   gap: 3px;
   margin-bottom: 10px;
+  position: sticky;
+  top: 0;
 }
 
 cryzenous-node-header .node-title {
@@ -115,7 +118,7 @@ cryzenous-arrow {
 }
 
 .cryzenous-btn-sm {
-  font-size: 15px!important;
+  font-size: 15px !important;
   padding: 0.3rem;
 }
 
@@ -138,7 +141,7 @@ cryzenous-btn-group {
 }
 
 .d-none {
-  display: none!important;
+  display: none !important;
 }
 
 cryzenous-node-selector {
@@ -233,4 +236,51 @@ details.cryzenous-tree[open] summary {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga';
+}
+
+cryzenous-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+cryzenous-navbar .cryzenous-navbar-header {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.cryzenous-navbar-title {
+  margin: 0;
+}
+
+.container {
+  padding: 5rem 1rem;
+}
+
+.cryzenous-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 24px;
+  transition: background 0.3s;
+}
+
+.cryzenous-fab:hover {
+  background-color: #0056b3;
 }

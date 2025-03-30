@@ -1,5 +1,5 @@
 import { CryzenousNodeArgument } from './CryzenousNodeArgument.js';
-import { generateId } from '../utils/id.js';
+import { generateId } from '@utils/id.js';
 
 export class CryzenousNode {
   constructor(name, module = 'global', args = [],nodeID=generateId()) {

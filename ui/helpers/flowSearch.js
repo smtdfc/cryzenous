@@ -14,7 +14,7 @@ export class CryzenousFlowSearch {
       const currentFlow = stack.pop();
       for (const node of currentFlow.nodes) {
         for (const arg of node.args) {
-          if (arg.type !== "ONLY_VALUE" && arg.flow instanceof CryzenousFlow) {
+          if (arg.type !== 'ONLY_VALUE' && arg.flow instanceof CryzenousFlow) {
             this.flowMap.set(arg.flow.flowID, arg.flow);
             stack.push(arg.flow);
           }

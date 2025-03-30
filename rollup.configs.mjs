@@ -2,6 +2,8 @@ import { rollupGenerateConfig } from 'rumious-builder/helpers/rollup.js';
 import path from 'path';
 import fs from 'fs';
 import postcss from 'rollup-plugin-postcss';
+import alias from "@rollup/plugin-alias";
+
 
 const isProduction = process.env.NODE_ENV === 'production';
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -23,6 +25,14 @@ export default {
         extract: 'bundles.css',
       })
     );
+    
+    configs.plugins.push(alias({
+      entries: [
+        { find: "@services", replacement: path.resolve(__dirname, "ui/services") },
+        { find: "@utils", replacement: path.resolve(__dirname, "ui/utils") },
+        { find: "@components", replacement: path.resolve(__dirname, "ui/components") },
+      ],
+    }))
     
     configs.treeshake = true;
     configs.cache = cache;

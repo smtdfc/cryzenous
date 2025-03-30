@@ -1,6 +1,6 @@
 import { CryzenousNode } from './CryzenousNode.js';
-import { generateId } from '../utils/id.js';
-import {EventChannel} from '../utils/event.js';
+import { generateId } from '@utils/id.js';
+import {EventChannel} from '@utils/event.js';
 
 export class CryzenousFlow {
   constructor(nodes = [], flowID = generateId()) {
@@ -11,7 +11,7 @@ export class CryzenousFlow {
   
   addNode(node){
     this.nodes.push(node);
-    this.event.emit("node:add",node);
+    this.event.emit('node:add',node);
   }
   
   toJSON() {
