@@ -4,7 +4,7 @@ import initRouter from "./router/index.js";
 import { RumiousUIModule } from 'rumious-ui';
 import "./styles/main.css";
 import "rumious-ui/dist/index.css";
-
+import {FlowEditor} from './components/FlowEditor.jsx';
 
 const app = new RumiousApp(document.getElementById("root"));
 app.ui = RumiousUIModule.init(app);
@@ -14,10 +14,8 @@ initRouter(app);
 app.render(
   <>
     <Navbar/>
-    <div class="cryzenous-app-container">
-      {app.router.rootInjector}
-    </div>
+    <FlowEditor />
   </>
 );
 
-app.router.start();
+//app.router.start();

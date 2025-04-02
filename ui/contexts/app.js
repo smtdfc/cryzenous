@@ -1,5 +1,5 @@
-import {createContext} from 'rumious';
+import {createContext,createArrayState} from 'rumious';
 
 export const AppContext = createContext(Date.now(),{
-  projects:[]
+  projects:createArrayState([])
 })

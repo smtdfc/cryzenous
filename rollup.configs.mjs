@@ -3,6 +3,8 @@ import path from 'path';
 import fs from 'fs';
 import postcss from 'rollup-plugin-postcss';
 import alias from "@rollup/plugin-alias";
+import replace from "@rollup/plugin-replace";
+
 
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -16,6 +18,11 @@ let cache = fs.existsSync(CACHE_FILE) ?
 
 export default {
   ...rollupGenerateConfig(path.join(__dirname, 'rumious.configs.json'), (configs) => {
+    configs.plugins.unshift(replace({
+      preventAssignment: true,
+      "process.env.BACKEND_URL": JSON.stringify(process.env.BACKEND_URL)
+    }));
+    
     configs.plugins.push(
       postcss({
         modules: {
@@ -28,6 +35,7 @@ export default {
     
     configs.plugins.push(alias({
       entries: [
+        { find: "@helpers", replacement: path.resolve(__dirname, "ui/helpers") },
         { find: "@services", replacement: path.resolve(__dirname, "ui/services") },
         { find: "@utils", replacement: path.resolve(__dirname, "ui/utils") },
         { find: "@components", replacement: path.resolve(__dirname, "ui/components") },

@@ -3,9 +3,9 @@ package controllers
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.io/smtdfc/cryzenous/pkg/services"
-	"github.io/smtdfc/cryzenous/pkg/models"
 	"strconv"
 	"log"
+	
 )
 
 type ProjectsController struct{}
@@ -20,7 +20,6 @@ func (ProjectsController) List(c *fiber.Ctx) error {
 	})
 }
 
-
 func (ProjectsController) Create(c *fiber.Ctx) error {
 	var request struct {
 		Name     string  `json:"name"`
@@ -29,6 +28,7 @@ func (ProjectsController) Create(c *fiber.Ctx) error {
 	}
 
 	if err := c.BodyParser(&request); err != nil {
+	  log.Println(err)
 		return c.Status(fiber.StatusBadRequest).JSON(map[string]interface{}{
 			"status": "error",
 			"message": "Invalid request body",
@@ -51,7 +51,6 @@ func (ProjectsController) Create(c *fiber.Ctx) error {
 		},
 	})
 }
-
 
 func (ProjectsController) GetByID(c *fiber.Ctx) error {
 	idStr := c.Params("id")
@@ -78,7 +77,6 @@ func (ProjectsController) GetByID(c *fiber.Ctx) error {
 		},
 	})
 }
-
 
 func (ProjectsController) Update(c *fiber.Ctx) error {
 	idStr := c.Params("id")

@@ -5,211 +5,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-.cryzenous-editor-container {
-  width: 100vw;
-  height: 100vh;
-  background-color: #f8f9fa;
-  background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-cryzenous-flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 10px;
-}
-
-cryzenous-node {
-  width: 350px;
-  padding: 15px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ccc;
-  position: relative;
-}
-
-cryzenous-node-header {
-  background: white;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin-bottom: 10px;
-  position: sticky;
-  top: 0;
-}
-
-cryzenous-node-header .node-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-}
-
-cryzenous-node-header .node-subtitle {
-  font-size: 12px;
-  color: #666;
-}
-
-cryzenous-node-body {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-cryzenous-node-arg {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-cryzenous-node-arg .node-arg-name {
-  font-size: 12px;
-  font-weight: bold;
-  color: #444;
-}
-
-cryzenous-node-arg .node-arg-value {
-  font-size: 14px;
-  color: #222;
-  background: #e9ecef;
-  padding: 5px;
-  border-radius: 4px;
-  min-height: 27px;
-}
-
-cryzenous-node-arg-flow {
-  margin-top: 5px;
-}
-
-cryzenous-node-arg cryzenous-node {
-  width: 100% !important;
-}
-
-cryzenous-node-arg cryzenous-flow {
-  margin: 5px;
-}
-
-cryzenous-arrow {
-  font-size: 24px;
-  color: #666;
-}
-
-.material-icons.arrow {
-  font-size: 24px;
-  color: #666;
-}
-
-.node-arg-value:focus {
-  outline: 2px solid #6C78FF;
-}
-
-.cryzenous-btn {
-  background: none;
-}
-
-.cryzenous-btn-icon {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 50%;
-  padding: 0.8rem;
-  border: none;
-}
-
-.cryzenous-btn-sm {
-  font-size: 15px !important;
-  padding: 0.3rem;
-}
-
-.cryzenous-btn-md {
-  font-size: 18px;
-  padding: 0.5rem;
-}
-
-cryzenous-btn-group {
-  display: flex;
-  justify-content: center;
-  column-gap: 10px;
-  margin-top: 20px;
-}
-
-.cryzenous-error-icon {
-  margin-left: 3px;
-  font-size: 12px !important;
-  color: red;
-}
-
-.d-none {
-  display: none !important;
-}
-
-cryzenous-node-selector {
-  display: block;
-  position: fixed;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background: white;
-  z-index: 2;
-  width: 100%;
-  transform: translateX(-100%);
-  transition: transform ease-in-out 0.3s;
-}
-
-cryzenous-node-selector.open {
-  transform: translateX(0%);
-}
-
-cryzenous-node-selector .cryzenous-header {
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-}
-
-cryzenous-node-selector .cryzenous-btn {
-  margin-left: auto;
-}
-
-@media (min-width: 48rem) {
-  cryzenous-node-selector {
-    width: 30% !important;
-  }
-}
-
-details.cryzenous-tree {
-  padding: 5px;
-  background: #f9f9f9;
-  margin: 5px 0;
-}
-
-.cryzenous-tree summary {
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px;
-}
-
-
-details.cryzenous-tree[open] summary {
-  color: #007bff;
-}
-
-.cryzenous-tree .cryzenous-tree-items {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 8px;
-  padding-left: 10px;
-}
-
-.cryzenous-tree-items>span {
-  display: block;
-  padding: 5px;
-}
-
-.cryzenous-tree-items>span:hover {
-  background: #e0e0e0;
-}
 
 @font-face {
   font-family: 'Material Icons';
@@ -238,49 +33,141 @@ details.cryzenous-tree[open] summary {
   font-feature-settings: 'liga';
 }
 
-cryzenous-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.5rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+:root {
+  --border-color: #cacaca;
+  --background-color: #ffffff;
+  --background-box-title: #f7f7f7;
 }
 
-cryzenous-navbar .cryzenous-navbar-header {
-  padding: 0.5rem;
+.flow-edit-container {
+  width: calc(100vw);
+  height: calc(100vh);
+  background: var(--background-color);
+  background-size: 25px 25px;
+  background-image:
+    linear-gradient(to right, #f1f1f1 1px, transparent 1px),
+    linear-gradient(to bottom, #f1f1f1 1px, transparent 1px);
+}
+
+
+.drawflow .drawflow-node {
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  -webkit-box-shadow: 0 2px 15px 2px var(--border-color);
+  box-shadow: 0 2px 15px 2px var(--border-color);
+  padding: 0px;
+  width: 250px;
+}
+
+.drawflow .drawflow-node.selected {
+  background: white;
+}
+
+.drawflow .connection .main-path {
+  stroke: red;
+  stroke-width: 3px;
+}
+
+.drawflow .drawflow-node .input,
+.drawflow .drawflow-node .output {
+  height: 15px;
+  width: 15px;
+  border: 2px solid var(--border-color);
+}
+
+.drawflow .drawflow-node .output {
+  right: 10px;
+}
+
+.output:first-child,
+.input:nth-child(1) {
+  background: green !important;
+  border-radius: 0 !important;
+}
+
+.drawflow .drawflow-node .output:not(:first-child) {
+  top: 93%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+}
+
+.drawflow .drawflow-node .input {
+  left: -10px;
+  background: white;
+}
+
+
+.drawflow>.drawflow-delete {
+  border: 2px solid #43b993;
+  background: white;
+  color: #43b993;
+}
+
+.drawflow-delete {
+  border: 2px solid #4ea9ff;
+  background: white;
+  color: #4ea9ff;
+}
+
+.drawflow-node .node-header {
+  border-bottom: 1px solid #e9e9e9;
+  border-radius: 4px 4px 0px 0px;
+  background: white;
   display: flex;
-  align-items: center;
-  column-gap: 10px;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0.6rem !important;
 }
 
-.cryzenous-navbar-title {
+.node-header .node-title {
   margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
 }
 
-.container {
-  padding: 5rem 1rem;
+.node-header .node-subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
 }
 
-.cryzenous-fab {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 56px;
-  height: 56px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
+
+.drawflow-node .node-body {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  font-size: 24px;
-  transition: background 0.3s;
+  flex-direction: column;
+  gap: 15px;
+  padding: 1rem;
 }
 
-.cryzenous-fab:hover {
-  background-color: #0056b3;
+.node-arg {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.node-arg .node-arg-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #444;
+}
+
+.node-arg .node-arg-value {
+  font-size: 14px;
+  color: #222;
+  background: #e9ecef;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.drawflow .connection .point {
+  stroke: var(--border-color);
+  stroke-width: 2;
+  fill: white;
+}
+
+.drawflow .connection .point.selected,
+.drawflow .connection .point:hover {
+  fill: red;
 }

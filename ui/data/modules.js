@@ -6,6 +6,5 @@ export const Modules = {
       'Print',
       ['message']
     ),
-
   }
 };
