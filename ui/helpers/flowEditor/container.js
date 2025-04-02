@@ -1,13 +1,16 @@
+import {createContext} from 'rumious';
 import Drawflow from 'drawflow';
+import {CryzenousFunctionNode} from './nodes/function.js';
 
 export class CryzenousFlowEditContainer {
-  constructor(container) {
+  constructor(container,context) {
+    this.context = context;
     this.nodes = {};
-    this.editor = new Drawflow(container);
-    this.editor.start();
-    this.editor.zoom_enable = true;
+    this.drawflow = new Drawflow(container);
+    this.drawflow.start();
+    this.drawflow.zoom_enable = true;
     
-    this.editor.on('connectionCreated', (data) => {
+    this.drawflow.on('connectionCreated', (data) => {
       let inputNodeID = data.input_id;
       let outputNodeID = data.output_id;
       let inputGateName = data.input_class;
@@ -16,7 +19,7 @@ export class CryzenousFlowEditContainer {
       sourceNode.gates[ouputGateName].push(inputNodeID);
     });
     
-    this.editor.on('connectionRemoved', (data) => {
+    this.drawflow.on('connectionRemoved', (data) => {
       let inputNodeID = data.input_id;
       let outputNodeID = data.output_id;
       let inputGateName = data.input_class;
@@ -25,9 +28,14 @@ export class CryzenousFlowEditContainer {
       sourceNode.gates[ouputGateName] = sourceNode.gates[ouputGateName].filter(value => value !== inputNodeID);
     });
     
-    this.editor.on("nodeRemoved", (id) => {
+    this.drawflow.on("nodeRemoved", (id) => {
       delete this.nodes[id];
     });
+    
+    new CryzenousFunctionNode(this,"Print","Core.Std",{
+      "Message":"",
+      "Endline":""
+    })
   }
   
   getObject() {

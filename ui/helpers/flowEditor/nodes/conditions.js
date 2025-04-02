@@ -1,11 +1,12 @@
 export class CryzenousConditionNode {
-  constructor(context, args = {}, pos = {}) {
-    this.editor = context.editor;
+  constructor(editor, args = {}, pos = {}) {
+    this.drawflow = editor.drawflow;
+    this.editor = editor;
     this.args = {
       expression: args.expression ?? ""
     };
     
-    this.id = this.editor.addNode("condition_node", 1, 2, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
+    this.id = this.drawflow.addNode("condition_node", 1, 2, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
             <div class="node-header">
               <h4 class="node-title">Conditions</h4>
               <p class="node-subtitle">Core.Flows</p>
@@ -16,25 +17,30 @@ export class CryzenousConditionNode {
                 <span class="node-arg-value" >${this.args.expression}</span>
               </div>
             </div>
-        `);
+     `);
     
-    this.node = this.editor.getNodeFromId(this.id);
+    this.node = this.drawflow.getNodeFromId(this.id);
     this.gates = {
       "output_1": [],
       "output_2": [],
     };
     
-    this.context = context;
-    this.context.nodes[this.id] = this;
+
+    this.editor.nodes[this.id] = this;
   }
   
-  static generate(context, obj) {
+  static generate(editor, obj) {
     let node = new CryzenousConditionNode(
-      context,
+      editor,
       obj.args,
       obj.pos
     );
-    node.gates = obj.gates;
+    
+    node.gates = {
+      'output_1':obj.connects.next ?? [],
+      'output_2':obj.connects.else ?? []
+    };
+    
     return node;
   }
   
@@ -47,7 +53,10 @@ export class CryzenousConditionNode {
       },
       id: this.id,
       args: this.args,
-      gates: this.gates,
+      connects:{
+        "next":this.gates['output_1'],
+        "else":this.gates['output_2'],
+      },
     }
   }
 }

@@ -60,7 +60,7 @@
 }
 
 .drawflow .drawflow-node.selected {
-  background: white;
+  background: white!important;
 }
 
 .drawflow .connection .main-path {
@@ -70,19 +70,18 @@
 
 .drawflow .drawflow-node .input,
 .drawflow .drawflow-node .output {
-  height: 15px;
-  width: 15px;
+  height: 18px!important;
+  width: 18px!important;
   border: 2px solid var(--border-color);
 }
 
 .drawflow .drawflow-node .output {
-  right: 10px;
+  right: 10px!important;
 }
 
-.output:first-child,
-.input:nth-child(1) {
-  background: green !important;
-  border-radius: 0 !important;
+.output:first-child,.input:nth-child(1){
+  background: green!important;
+  border-radius: 0!important;
 }
 
 .drawflow .drawflow-node .output:not(:first-child) {
@@ -94,7 +93,6 @@
 
 .drawflow .drawflow-node .input {
   left: -10px;
-  background: white;
 }
 
 

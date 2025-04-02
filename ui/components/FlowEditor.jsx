@@ -1,6 +1,6 @@
 import { RumiousComponent, createElementRef } from 'rumious';
 import {CryzenousFlowEditContainer} from '@helpers/flowEditor/container.js';
-import 'drawflow/dist/drawflow.min.css';
+
 
 
 export class FlowEditor extends RumiousComponent {

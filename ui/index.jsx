@@ -2,6 +2,7 @@ import { RumiousApp } from 'rumious';
 import { Navbar } from './components/Navbar.jsx';
 import initRouter from "./router/index.js";
 import { RumiousUIModule } from 'rumious-ui';
+import 'drawflow/dist/drawflow.min.css';
 import "./styles/main.css";
 import "rumious-ui/dist/index.css";
 import {FlowEditor} from './components/FlowEditor.jsx';
