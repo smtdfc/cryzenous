@@ -11,8 +11,8 @@
     "drawflow": "^0.0.60",
     "ky": "^1.8.0",
     "rumious": "*",
-    "rumious-router": "^0.0.2",
-    "rumious-ui": "^0.0.1"
+    "rumious-router": "^0.0.3-beta.0",
+    "rumious-ui": "^0.0.1-beta.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

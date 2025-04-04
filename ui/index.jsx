@@ -1,11 +1,11 @@
 import { RumiousApp } from 'rumious';
-import { Navbar } from './components/Navbar.jsx';
 import initRouter from "./router/index.js";
 import { RumiousUIModule } from 'rumious-ui';
+import { Navbar } from './components/Navbar.jsx';
+
 import 'drawflow/dist/drawflow.min.css';
 import "./styles/main.css";
 import "rumious-ui/dist/index.css";
-import {FlowEditor} from './components/FlowEditor.jsx';
 
 const app = new RumiousApp(document.getElementById("root"));
 app.ui = RumiousUIModule.init(app);
@@ -15,8 +15,10 @@ initRouter(app);
 app.render(
   <>
     <Navbar/>
-    <FlowEditor />
+    <div>
+      {app.router.rootInjector}
+    </div>
   </>
 );
 
-//app.router.start();
+app.router.start();

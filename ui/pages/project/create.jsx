@@ -17,7 +17,7 @@ export class Page extends RumiousComponent {
   template() {
     return (
       <>
-      <div class="container">
+      <div class="container" style="margin-top:5rem">
           <div class="d-flex align-center justify-start"  style="box-sizing:border-box;">
               <button onClick={()=> this.app.router.redirect("/")} class="btn btn-icon material-icons">arrow_back_ios</button>
               <h4>Create project</h4> 

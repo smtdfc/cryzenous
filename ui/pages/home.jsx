@@ -34,7 +34,7 @@ export class Page extends RumiousComponent {
           {'@media(max-width:48rem){ #searchInput{ width:90%!important; } }'}
         </style> 
 
-        <div class="container">
+        <div class="container" style="margin-top:5rem">
           <h2 class="mb-8">My Projects</h2> 
           <div class="d-flex align-center justify-center" style="width:100%;">
             <input 
@@ -49,7 +49,7 @@ export class Page extends RumiousComponent {
           <ul bind:show="$isDataLoaded">
             {
               syncArray(this.projects,(data)=>{
-               return <li class="list-item justify-start" style="gap:10px">
+               return <li onClick={()=> this.app.router.redirect(`/project/view/${data.id}/overview`)} class="list-item justify-start" style="gap:10px">
                    <i class="material-icons">inventory_2</i> {data.name}
                 </li>
               })
@@ -67,7 +67,7 @@ export class Page extends RumiousComponent {
         </div> 
 
         <button 
-          class="cryzenous-fab material-icons" 
+          class="fab material-icons" 
           onClick={() => this.app.router.redirect("/project/create")}
         >
           add
