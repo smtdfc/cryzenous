@@ -3,11 +3,11 @@ export class CryzenousForEachNode {
     this.drawflow = editor.drawflow;
     this.editor = editor;
     this.args = {
-      index: args.index ?? "",
-      list: args.start ?? "",
+      index: args.index ?? '',
+      list: args.start ?? '',
     };
     
-    this.id = this.drawflow.addNode("for_each_node", 1, 2, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
+    this.id = this.drawflow.addNode('for_each_node', 1, 2, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
             <div class="node-header">
               <h4 class="node-title">For Each</h4>
               <p class="node-subtitle">Core.Flows</p>
@@ -27,8 +27,8 @@ export class CryzenousForEachNode {
     
     this.node = this.drawflow.getNodeFromId(this.id);
     this.gates = {
-      "output_1": [],
-      "output_2": [],
+      'output_1': [],
+      'output_2': [],
     };
     
     
@@ -52,7 +52,7 @@ export class CryzenousForEachNode {
   
   getObject() {
     return {
-      type: "CryzenousForEachNode",
+      type: 'CryzenousForEachNode',
       pos: {
         x: this.node.pos_x,
         y: this.node.pos_y
@@ -60,9 +60,9 @@ export class CryzenousForEachNode {
       id: this.id,
       args: this.args,
       connects: {
-        "next": this.gates['output_1'],
-        "body": this.gates['output_2'],
+        'next': this.gates['output_1'],
+        'body': this.gates['output_2'],
       },
-    }
+    };
   }
 }

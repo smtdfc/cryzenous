@@ -2,9 +2,9 @@ export class CryzenousStartNode {
   constructor(editor, args = {}, pos = {}) {
     this.drawflow = editor.drawflow;
     this.editor = editor;
-    this.args = {};
+    this.args = args;
     
-    this.id = this.drawflow.addNode("start_node", 0, 1, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
+    this.id = this.drawflow.addNode('start_node', 0, 1, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
             <div class="node-header">
               <h4 class="node-title">Start</h4>
               <p class="node-subtitle">Core.Flows</p>
@@ -13,7 +13,7 @@ export class CryzenousStartNode {
     
     this.node = this.drawflow.getNodeFromId(this.id);
     this.gates = {
-      "output_1": [],
+      'output_1': [],
     };
     
     
@@ -36,7 +36,7 @@ export class CryzenousStartNode {
   
   getObject() {
     return {
-      type: "CryzenousStartNode",
+      type: 'CryzenousStartNode',
       pos: {
         x: this.node.pos_x,
         y: this.node.pos_y
@@ -44,8 +44,8 @@ export class CryzenousStartNode {
       id: this.id,
       args: this.args,
       connects: {
-        "next": this.gates['output_1'],
+        'next': this.gates['output_1'],
       },
-    }
+    };
   }
 }

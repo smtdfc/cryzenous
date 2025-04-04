@@ -3,10 +3,10 @@ export class CryzenousEventNode {
     this.drawflow = editor.drawflow;
     this.editor = editor;
     this.args = {
-      name: args.name ?? ""
+      name: args.name ?? ''
     };
     
-    this.id = this.drawflow.addNode("event_node", 0, 1, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
+    this.id = this.drawflow.addNode('event_node', 0, 1, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
             <div class="node-header">
               <h4 class="node-title">Event Trigger</h4>
               <p class="node-subtitle">Core.Flows</p>
@@ -21,7 +21,7 @@ export class CryzenousEventNode {
     
     this.node = this.drawflow.getNodeFromId(this.id);
     this.gates = {
-      "output_1": [],
+      'output_1': [],
     };
     
     
@@ -44,7 +44,7 @@ export class CryzenousEventNode {
   
   getObject() {
     return {
-      type: "CryzenousEventNode",
+      type: 'CryzenousEventNode',
       pos: {
         x: this.node.pos_x,
         y: this.node.pos_y
@@ -52,8 +52,8 @@ export class CryzenousEventNode {
       id: this.id,
       args: this.args,
       connects: {
-        "next": this.gates['output_1'],
+        'next': this.gates['output_1'],
       },
-    }
+    };
   }
 }

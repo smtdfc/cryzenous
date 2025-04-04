@@ -1,6 +1,6 @@
-import ky from "ky";
-import { CryzenousProject } from "../models/CryzenousProject.js";
-import { AppContext } from "../contexts/app.js";
+import ky from 'ky';
+import { CryzenousProject } from '../models/CryzenousProject.js';
+import { AppContext } from '../contexts/app.js';
 
 const backendURL = process.env.BACKEND_URL;
 
@@ -19,9 +19,9 @@ export class CryzenousProjectManagerService {
         });
       }
       
-      AppContext.get("projects").set(projects)
+      AppContext.get('projects').set(projects);
     } catch (error) {
-      console.error("Failed to fetch projects:", error);
+      console.error('Failed to fetch projects:', error);
     }
   }
   
@@ -30,11 +30,11 @@ export class CryzenousProjectManagerService {
   }
   
   static async create(name) {
-    let rawData = await ky.post(`${backendURL}/api/v1/projects/create`, {
+    await ky.post(`${backendURL}/api/v1/projects/create`, {
       retry: 0,
       json:{
         name:name,
-        metadata:"{}"
+        metadata:'{}'
       }
     }).json();
     let project = new CryzenousProject(name, {});

@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('Material Icons'),
-    url(./MaterialIconsOutlined-Regular.otf) format('truetype');
+    url('../fonts/MaterialIconsOutlined-Regular.otf') format('truetype');
 }
 
 .material-symbols-outlined,

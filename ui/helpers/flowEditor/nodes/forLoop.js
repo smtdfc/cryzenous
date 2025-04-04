@@ -3,12 +3,12 @@ export class CryzenousForLoopNode {
     this.drawflow = editor.drawflow;
     this.editor = editor;
     this.args = {
-      counter: args.counter ?? "",
-      start: args.start ?? "",
-      end: args.end ?? ""
+      counter: args.counter ?? '',
+      start: args.start ?? '',
+      end: args.end ?? ''
     };
     
-    this.id = this.drawflow.addNode("for_loop_node", 1, 2, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
+    this.id = this.drawflow.addNode('for_loop_node', 1, 2, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
             <div class="node-header">
               <h4 class="node-title">For Loop</h4>
               <p class="node-subtitle">Core.Flows</p>
@@ -32,8 +32,8 @@ export class CryzenousForLoopNode {
     
     this.node = this.drawflow.getNodeFromId(this.id);
     this.gates = {
-      "output_1": [],
-      "output_2": [],
+      'output_1': [],
+      'output_2': [],
     };
     
     
@@ -57,7 +57,7 @@ export class CryzenousForLoopNode {
   
   getObject() {
     return {
-      type: "CryzenousForLoopNode",
+      type: 'CryzenousForLoopNode',
       pos: {
         x: this.node.pos_x,
         y: this.node.pos_y
@@ -65,9 +65,9 @@ export class CryzenousForLoopNode {
       id: this.id,
       args: this.args,
       connects: {
-        "next": this.gates['output_1'],
-        "body": this.gates['output_2'],
+        'next': this.gates['output_1'],
+        'body': this.gates['output_2'],
       },
-    }
+    };
   }
 }

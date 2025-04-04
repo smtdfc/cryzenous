@@ -2,9 +2,9 @@ import { rollupGenerateConfig } from 'rumious-builder/helpers/rollup.js';
 import path from 'path';
 import fs from 'fs';
 import postcss from 'rollup-plugin-postcss';
-import alias from "@rollup/plugin-alias";
-import replace from "@rollup/plugin-replace";
-
+import alias from '@rollup/plugin-alias';
+import replace from '@rollup/plugin-replace';
+import url from '@rollup/plugin-url';
 
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -18,9 +18,18 @@ let cache = fs.existsSync(CACHE_FILE) ?
 
 export default {
   ...rollupGenerateConfig(path.join(__dirname, 'rumious.configs.json'), (configs) => {
+    configs.plugins.push(alias({
+      entries: [
+        { find: '@helpers', replacement: path.resolve(__dirname, 'ui/helpers') },
+        { find: '@services', replacement: path.resolve(__dirname, 'ui/services') },
+        { find: '@utils', replacement: path.resolve(__dirname, 'ui/utils') },
+        { find: '@components', replacement: path.resolve(__dirname, 'ui/components') },
+      ],
+    }));
+    
     configs.plugins.unshift(replace({
       preventAssignment: true,
-      "process.env.BACKEND_URL": JSON.stringify(process.env.BACKEND_URL)
+      'process.env.BACKEND_URL': JSON.stringify(process.env.BACKEND_URL)
     }));
     
     configs.plugins.push(
@@ -29,18 +38,18 @@ export default {
           generateScopedName: '[local]',
         },
         minimize: isProduction,
-        extract: 'bundles.css',
+        extract: 'bundles.css'
       })
     );
     
-    configs.plugins.push(alias({
-      entries: [
-        { find: "@helpers", replacement: path.resolve(__dirname, "ui/helpers") },
-        { find: "@services", replacement: path.resolve(__dirname, "ui/services") },
-        { find: "@utils", replacement: path.resolve(__dirname, "ui/utils") },
-        { find: "@components", replacement: path.resolve(__dirname, "ui/components") },
-      ],
-    }))
+    configs.plugins.push(
+      url({
+        include: ['**/*.woff', '**/*.woff2', '**/*.ttf', '**/*.eot','**/*.otf'], 
+        limit: 0, 
+        publicPath: './ui/fonts/',
+        destDir: 'public/fonts',
+      }),
+    );
     
     configs.treeshake = true;
     configs.cache = cache;

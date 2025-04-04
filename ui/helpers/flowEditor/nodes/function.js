@@ -1,12 +1,12 @@
 export class CryzenousFunctionNode {
-  constructor(editor, functionName = "", moduleName = "", args = {}, pos = {}) {
+  constructor(editor, functionName = '', moduleName = '', args = {}, pos = {}) {
     this.drawflow = editor.drawflow;
     this.functionName = functionName;
     this.moduleName = moduleName;
     this.editor = editor;
     this.args = {};
     
-    this.id = this.drawflow.addNode("function_node", 1, 1, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
+    this.id = this.drawflow.addNode('function_node', 1, 1, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
         <div class="node-header">
           <h4 class="node-title">${this.functionName}</h4>
           <p class="node-subtitle">${this.moduleName}</p>
@@ -21,14 +21,14 @@ export class CryzenousFunctionNode {
                 </div>
                 `
              )
-             .join("")
+             .join('')
           }
         </div>
      `);
     
     this.node = this.drawflow.getNodeFromId(this.id);
     this.gates = {
-      "output_1": [],
+      'output_1': [],
     };
     
     this.editor.nodes[this.id] = this;
@@ -52,7 +52,7 @@ export class CryzenousFunctionNode {
   
   getObject() {
     return {
-      type: "CryzenousFunctionNode",
+      type: 'CryzenousFunctionNode',
       name: this.functionName,
       module: this.moduleName,
       pos: {
@@ -62,8 +62,8 @@ export class CryzenousFunctionNode {
       id: this.id,
       args: this.args,
       connects: {
-        "next": this.gates['output_1'],
+        'next': this.gates['output_1'],
       },
-    }
+    };
   }
 }

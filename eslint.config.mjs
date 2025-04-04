@@ -7,6 +7,7 @@ export default [
     ignores: [
       '**/dev/*',
       '**/dist/*',
+      '**/bundles/*',
       '**/test/*',
       'tsconfig.json',
     ]

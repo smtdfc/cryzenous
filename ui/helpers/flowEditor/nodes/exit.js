@@ -2,9 +2,8 @@ export class CryzenousExitNode {
   constructor(editor, args = {}, pos = {}) {
     this.drawflow = editor.drawflow;
     this.editor = editor;
-    this.args = {};
-    
-    this.id = this.drawflow.addNode("exit_node", 1, 0, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
+    this.args = args;
+    this.id = this.drawflow.addNode('exit_node', 1, 0, pos.x ?? 0, pos.y ?? 0, 'node', {}, `
             <div class="node-header">
               <h4 class="node-title">Exit</h4>
               <p class="node-subtitle">Core.Flows</p>
@@ -28,7 +27,7 @@ export class CryzenousExitNode {
   
   getObject() {
     return {
-      type: "CryzenousExitNode",
+      type: 'CryzenousExitNode',
       pos: {
         x: this.node.pos_x,
         y: this.node.pos_y
@@ -36,6 +35,6 @@ export class CryzenousExitNode {
       id: this.id,
       args: this.args,
       connects: {},
-    }
+    };
   }
 }
