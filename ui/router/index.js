@@ -5,7 +5,7 @@ export default function(app) {
   const router = app.addModule(RumiousRouterModule, {
     strategy: RumiousRouterStrategies.hash,
     wrappers: {
-      "/project/view/:id/*":[
+      '/project/view/:id/*':[
         ProjectViewWrapper
       ]
     },
@@ -25,6 +25,12 @@ export default function(app) {
           routerLazy(() => import('../pages/project/view/overview.jsx'))
         ]
       },
+      '/project/view/:id/deployment': {
+        components: [
+          routerLazy(() => import('../pages/project/view/deployment.jsx'))
+        ]
+      },
+
     }
   });
   

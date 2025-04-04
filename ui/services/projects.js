@@ -15,7 +15,7 @@ export class CryzenousProjectManagerService {
       
       if (Array.isArray(rawData.results?.list)) {
         rawData.results.list.forEach((info) => {
-          projects.push(new CryzenousProject(info.name, info.metadata));
+          projects.push(new CryzenousProject(info.id,info.name, info.metadata));
         });
       }
       

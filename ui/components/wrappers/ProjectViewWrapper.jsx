@@ -1,14 +1,13 @@
 import { RumiousComponent,createElementRef, createArrayState } from 'rumious';
 import { RumiousUITab } from 'rumious-ui';
-import { CryzenousProjectManagerService } from '@services/projects.js';
 
 export class ProjectViewWrapper extends RumiousComponent {
   static tag = "cryzenous-project-view";
   
   onCreate() {
-    this.tabRef = createElementRef();
-    this.currentProjectID = null;
     this.router = this.props.router;
+    this.tabRef = createElementRef();
+    this.currentProjectID = this.router.params.id;
     this.tabs = [
       { name: "Overview", pattern: "/project/view/:id/overview", active: false },
       { name: "Deployment", pattern: "/project/view/:id/deployment", active: false },
@@ -19,16 +18,16 @@ export class ProjectViewWrapper extends RumiousComponent {
   onRouteChange() {
     const tab = new RumiousUITab(this.tabRef.target);
     const index = this.tabs.findIndex(tab => tab.pattern === this.router.currentPattern);
-    if (index !== -1) tab.setTabByIndex(index);
+    if (index !== -1) requestAnimationFrame(()=>{tab.setTabByIndex(index)});
   }
   
   onRender() {
     this.onRouteChange();
-    this.router.on("change",this.onRouteChange.bind(this));
+    this.router.on("solved",this.onRouteChange.bind(this));
   }
   
   onDestroy(){
-    this.router.off("change",this.onRouteChange.bind(this));
+    this.router.off("solved",this.onRouteChange.bind(this));
   }
   
   template() {
