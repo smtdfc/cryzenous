@@ -1,14 +1,15 @@
-import {createContext} from 'rumious';
+import { createContext } from 'rumious';
 import Drawflow from 'drawflow';
-import {CryzenousFunctionNode} from './nodes/function.js';
+import { CryzenousFunctionNode } from './nodes/function.js';
 
 export class CryzenousFlowEditContainer {
-  constructor(container,context) {
+  constructor(container, context) {
     this.context = context;
     this.nodes = {};
     this.drawflow = new Drawflow(container);
     this.drawflow.start();
     this.drawflow.zoom_enable = true;
+    this.drawflow.useuuid = true;
     
     this.drawflow.on('connectionCreated', (data) => {
       let inputNodeID = data.input_id;
@@ -32,10 +33,6 @@ export class CryzenousFlowEditContainer {
       delete this.nodes[id];
     });
     
-    new CryzenousFunctionNode(this,"Print","Core.Std",{
-      "Message":"",
-      "Endline":""
-    })
   }
   
   getObject() {

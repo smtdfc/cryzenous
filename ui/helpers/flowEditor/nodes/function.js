@@ -17,7 +17,7 @@ export class CryzenousFunctionNode {
               (argName) => `
                 <div class="node-arg">
                   <span class="node-arg-name">${argName}:</span>
-                  <span class="node-arg-value">${this.args[argName]}</span>
+                  <span class="node-arg-value" contenteditable="true" >${this.args[argName]}</span>
                 </div>
                 `
              )

@@ -16,16 +16,17 @@ export class CryzenousForLoopNode {
             <div class="node-body">
               <div class="node-arg">
                 <span class="node-arg-name">Counter:</span>
-                <span class="node-arg-value" >${this.args.counter}</span>
+                <span class="node-arg-value" contenteditable="true" >${this.args.counter}</span>
               </div>
               <div class="node-arg">
                 <span class="node-arg-name">Start Value:</span>
-                <span class="node-arg-value" >${this.args.start}</span>
+                <span class="node-arg-value" contenteditable="true"  >${this.args.start}</span>
               </div>
               <div class="node-arg">
                 <span class="node-arg-name">End Value:</span>
-                <span class="node-arg-value" >${this.args.end}</span>
+                <span class="node-arg-value" contenteditable="true" >${this.args.end}</span>
               </div>
+              <br/>
             </div>
      `);
     

@@ -47,6 +47,7 @@
   background-image:
     linear-gradient(to right, #f1f1f1 1px, transparent 1px),
     linear-gradient(to bottom, #f1f1f1 1px, transparent 1px);
+  z-index: 1 !important;
 }
 
 
@@ -56,37 +57,39 @@
   -webkit-box-shadow: 0 2px 15px 2px var(--border-color);
   box-shadow: 0 2px 15px 2px var(--border-color);
   padding: 0px;
-  width: 250px;
+  width: 300px !important;
+  
 }
 
 .drawflow .drawflow-node.selected {
-  background: white!important;
+  background: white !important;
 }
 
 .drawflow .connection .main-path {
-  stroke: red;
+  stroke: var(--primary-color);
   stroke-width: 3px;
 }
 
 .drawflow .drawflow-node .input,
 .drawflow .drawflow-node .output {
-  height: 18px!important;
-  width: 18px!important;
+  height: 18px !important;
+  width: 18px !important;
   border: 2px solid var(--border-color);
 }
 
 .drawflow .drawflow-node .output {
-  right: 10px!important;
+  right: 10px !important;
 }
 
-.output:first-child,.input:nth-child(1){
-  background: green!important;
-  border-radius: 0!important;
+.output:first-child,
+.input:nth-child(1) {
+  background: green !important;
+  border-radius: 0 !important;
 }
 
 .drawflow .drawflow-node .output:not(:first-child) {
-  top: 93%;
-  left: 50%;
+  top: 80%;
+  left: 100%;
   transform: translateX(-50%);
   position: absolute;
 }
@@ -94,7 +97,6 @@
 .drawflow .drawflow-node .input {
   left: -10px;
 }
-
 
 .drawflow>.drawflow-delete {
   border: 2px solid #43b993;
@@ -159,6 +161,10 @@
   border-radius: 4px;
 }
 
+.node-arg-value:focus {
+  outline: solid 2px var(--primary-color);
+}
+
 .drawflow .connection .point {
   stroke: var(--border-color);
   stroke-width: 2;
@@ -168,4 +174,60 @@
 .drawflow .connection .point.selected,
 .drawflow .connection .point:hover {
   fill: red;
+}
+
+.fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  border: none;
+  background-color: #6200ea;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.fab:hover {
+  background-color: #3700b3;
+}
+
+.fab:active {
+  transform: scale(0.9);
+}
+
+.treeview summary {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
+  transition: background 0.3s ease;
+}
+
+
+.treeview summary:hover {
+  background: #e9ecef;
+  border-radius: 5px;
+}
+
+.treeview ul {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.treeview ul>li {
+  padding: 5px 0;
+  font-size: 14px;
+  color: #333;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.treeview ul>li:hover {
+  background: rgba(0, 0, 0, 0.1);
 }

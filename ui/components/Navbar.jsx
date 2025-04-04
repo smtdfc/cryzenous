@@ -6,8 +6,10 @@ export class Navbar extends RumiousComponent {
   template() {
     return(
       <>
-        <div class="cryzenous-navbar-header">
-          <h3 class="cryzenous-navbar-title">Cryzenous</h3>
+        <div class="navbar" style="z-index:1000">
+          <div class="navbar-header">
+            <h3 class="">Cryzenous</h3>
+          </div>
         </div>
       </>
     );
