@@ -4,8 +4,7 @@ import fs from 'fs';
 import postcss from 'rollup-plugin-postcss';
 import alias from '@rollup/plugin-alias';
 import replace from '@rollup/plugin-replace';
-import url from '@rollup/plugin-url';
-
+import copy from 'rollup-plugin-copy';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -42,14 +41,14 @@ export default {
       })
     );
     
-    configs.plugins.push(
-      url({
-        include: ['**/*.woff', '**/*.woff2', '**/*.ttf', '**/*.eot','**/*.otf'], 
-        limit: 0, 
-        publicPath: './ui/fonts/',
-        destDir: 'public/fonts',
-      }),
-    );
+    configs.plugins.push(copy({
+        targets: [
+          {
+            src: 'ui/fonts/*', 
+            dest: 'public/fonts'
+          },
+        ],
+      }));
     
     configs.treeshake = true;
     configs.cache = cache;
