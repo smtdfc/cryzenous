@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.io/smtdfc/cryzenous/pkg/services"
+	"github.com/smtdfc/cryzenous/pkg/services"
 	"strconv"
 	"log"
 	
@@ -64,6 +64,7 @@ func (ProjectsController) GetByID(c *fiber.Ctx) error {
 
 	project, err := services.ProjectService{}.GetByID(uint(id))
 	if err != nil {
+	  log.Println(err)
 		return c.Status(fiber.StatusNotFound).JSON(map[string]interface{}{
 			"status": "error",
 			"message": "Project not found",

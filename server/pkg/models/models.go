@@ -1,32 +1,26 @@
 package models
 
 import (
-    "gorm.io/driver/postgres"
-    "gorm.io/driver/sqlite"
-    "gorm.io/gorm"
+    "context"
     "log"
+    "github.com/smtdfc/cryzenous/pkg/ent"
+    "entgo.io/ent/dialect"
+    _ "github.com/go-sql-driver/mysql"
     "os"
 )
 
-var Database *gorm.DB
+var client *ent.Client
+
 func InitModels() {
-    
     var err error
-
-    dbType := os.Getenv("DATABASE_TYPE")
-    if dbType == "postgres" {
-        dsn := os.Getenv("DATABASE_DSN")
-        Database, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-    } else {
-        Database, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
-    }
-
+   client, err = ent.Open(dialect.MySQL, os.Getenv("DATABASE_DSN"))
     if err != nil {
-        log.Fatal(err)
+        log.Fatalf("failed opening connection to mysql: %v", err)
     }
-    /*
-    Generate()
-    Migration()
-    */
-    log.Println("Database connected !")
+    defer client.Close()
+
+    ctx := context.Background()
+    if err := client.Schema.Create(ctx); err != nil {
+        log.Fatalf("failed creating schema resources: %v", err)
+    }
 }

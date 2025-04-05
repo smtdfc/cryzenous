@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.io/smtdfc/cryzenous/pkg/models"
+	"github.com/smtdfc/cryzenous/pkg/models"
 	"log"
 )
 

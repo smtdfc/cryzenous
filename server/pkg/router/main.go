@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.io/smtdfc/cryzenous/pkg/controllers"
+	"github.com/smtdfc/cryzenous/pkg/controllers"
 )
 
 

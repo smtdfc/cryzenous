@@ -5,3 +5,6 @@ bundles
 .rollup.cache.json
 test
 .env
+
+/server/pkg/ent/
+!/server/pkg/ent/schema

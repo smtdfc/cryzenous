@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.io/smtdfc/cryzenous/pkg/models"
-	"github.io/smtdfc/cryzenous/pkg/router"
+	"github.com/smtdfc/cryzenous/pkg/models"
+//	"github.com/smtdfc/cryzenous/pkg/router"
 	"github.com/joho/godotenv"
 	"os"
 	"log"
@@ -30,7 +30,7 @@ func main() {
 	}))
 
 	models.InitModels()
-	router.InitRouter(app)
+//	router.InitRouter(app)
 
 	log.Println("Server is starting on port 3000...")
 	app.Listen(":3000")

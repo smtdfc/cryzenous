@@ -1,4 +1,5 @@
-import { RumiousComponent, createElementRef, createState,syncArray } from 'rumious';
+import { RumiousComponent, createElementRef, createState, syncArray } from 'rumious';
+import {ToastGenerator} from 'rumious-ui';
 import { AppContext } from '../contexts/app.js';
 import { CryzenousProjectManagerService } from '@services/projects.js';
 
@@ -18,8 +19,15 @@ export class Page extends RumiousComponent {
   
   
   async onRender() {
-    await CryzenousProjectManagerService.fetch();
-    setTimeout(() => this.isDataLoaded.set(true), 500);
+    try {
+      await CryzenousProjectManagerService.fetch();
+    } catch (err) {
+      ToastGenerator.show("Cannot load data !",{
+        type:"danger"
+      })
+    }
+    
+    this.isDataLoaded.set(true);
     if (this.projects.value.length === 0) {
       this.emptyAnnounmentRef.target.classList.remove("d-none");
     } else {
