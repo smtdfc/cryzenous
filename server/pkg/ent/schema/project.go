@@ -8,12 +8,12 @@ import(
   "entgo.io/ent/schema/field"
 )
 
-type Projects struct {
+type Project struct {
     ent.Schema
 }
 
 
-func (Projects) Fields() []ent.Field {
+func (Project) Fields() []ent.Field {
     return []ent.Field{
         field.UUID("id", uuid.UUID{}).Default(uuid.New),
         field.String("name"),
@@ -22,6 +22,6 @@ func (Projects) Fields() []ent.Field {
     }
 }
 
-func (Projects) Edges() []ent.Edge {
+func (Project) Edges() []ent.Edge {
     return nil
 }

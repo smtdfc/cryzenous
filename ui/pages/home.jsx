@@ -1,43 +1,51 @@
 import { RumiousComponent, createElementRef, createState, syncArray } from 'rumious';
-import {ToastGenerator} from 'rumious-ui';
+import { ToastGenerator } from 'rumious-ui';
 import { AppContext } from '../contexts/app.js';
 import { CryzenousProjectManagerService } from '@services/projects.js';
 
 export class Page extends RumiousComponent {
-  static tag = "cryzenous-page-home";
-  
-  constructor() {
-    super();
-    this.renderOptions = { mode: "async" };
-  }
-  
-  onCreate() {
-    this.isDataLoaded = createState(false);
-    this.emptyAnnounmentRef = createElementRef();
-    this.projects = AppContext.get("projects");
-  }
-  
-  
-  async onRender() {
-    try {
-      await CryzenousProjectManagerService.fetch();
-    } catch (err) {
-      ToastGenerator.show("Cannot load data !",{
-        type:"danger"
-      })
-    }
-    
-    this.isDataLoaded.set(true);
-    if (this.projects.value.length === 0) {
-      this.emptyAnnounmentRef.target.classList.remove("d-none");
-    } else {
-      this.emptyAnnounmentRef.target.classList.add("d-none");
-    }
-  }
-  
-  template() {
-    return (
-      <> 
+	static tag = "cryzenous-page-home";
+	
+	constructor() {
+		super();
+		this.renderOptions = { mode: "async" };
+		this.id = Date.now();
+	}
+	
+	onCreate() {
+		this.isDataLoaded = createState(false);
+		this.emptyAnnounmentRef = createElementRef();
+		this.projects = AppContext.get("projects");
+		
+	}
+	
+	onChange(data) {
+		console.log(this.id)
+		return <li onClick={()=> this.app.router.redirect(`/project/view/${data.id}/overview`)} class="list-item justify-start" style="gap:10px">
+                   <i class="material-icons">inventory_2</i> {data.name}
+           </li>
+		
+	}
+	async onRender() {
+		try {
+			await CryzenousProjectManagerService.fetch();
+		} catch (err) {
+			ToastGenerator.show("Cannot load data !", {
+				type: "danger"
+			})
+		}
+		
+		this.isDataLoaded.set(true);
+		if (this.projects.value.length === 0) {
+			this.emptyAnnounmentRef.target.classList.remove("d-none");
+		} else {
+			this.emptyAnnounmentRef.target.classList.add("d-none");
+		}
+	}
+	
+	template() {
+		return (
+			<> 
         <style>
           {'@media(max-width:48rem){ #searchInput{ width:90%!important; } }'}
         </style> 
@@ -56,11 +64,7 @@ export class Page extends RumiousComponent {
           <br/>
           <ul bind:show="$isDataLoaded">
             {
-              syncArray(this.projects,(data)=>{
-               return <li onClick={()=> this.app.router.redirect(`/project/view/${data.id}/overview`)} class="list-item justify-start" style="gap:10px">
-                   <i class="material-icons">inventory_2</i> {data.name}
-                </li>
-              })
+              syncArray(this.projects,this.onChange.bind(this))
             }
           </ul>
           <div class="spinner-loader loader" bind:hide="$isDataLoaded" />
@@ -81,6 +85,6 @@ export class Page extends RumiousComponent {
           add
         </button> 
       </>
-    );
-  }
+		);
+	}
 }

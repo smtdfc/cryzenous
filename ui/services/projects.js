@@ -24,8 +24,8 @@ export class CryzenousProjectManagerService {
   }
   
   static async create(name) {
-    await ky.post(`${backendURL}/api/v1/projects/create`, { retry: 0, json: { name, metadata: '{}' } }).json();
-    const project = new CryzenousProject(name, {});
+    let data = await ky.post(`${backendURL}/api/v1/projects/create`, { retry: 0, json: { name, metadata: '{}' } }).json();
+    const project = new CryzenousProjectd(data.id,name, {});
     AppContext.data.projects.append(project);
     return project;
   }
