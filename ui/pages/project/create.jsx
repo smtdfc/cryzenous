@@ -24,8 +24,8 @@ export class Page extends RumiousComponent {
           </div>
           <div class="">
             <div class="form-group">
-              <label class="form-label">Project name:</label>
-              <input model="$projectName" class="form-input" type="text"/>
+              <label for="projectNameInput" class="form-label">Project name:</label>
+              <input id="projectNameInput" model="$projectName" class="form-input" type="text"/>
             </div>
             <div class="d-flex p-5">
               <button on:click="onCreateBtnClick" class="ml-auto btn btn-primary">Create</button>
