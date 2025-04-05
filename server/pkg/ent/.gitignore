@@ -1,5 +1,5 @@
 
 *
 !.gitignore
-!schema/
+!schema
 !generate.go
