@@ -6,5 +6,4 @@ bundles
 test
 .env
 
-server/pkg/ent/**
-!server/pkg/ent/schema/**
+server/pkg/ent/generated
