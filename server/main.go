@@ -17,12 +17,18 @@ func main() {
 	}
 	
 	allowOrigins := os.Getenv("ALLOW_ORIGINS")
+	port := os.Getenv("SERVER_PORT")
+	if port == ""{
+		port="3000"
+	}
+	
 	if allowOrigins == "" {
 		allowOrigins = "http://localhost:7700"
 	}
 
 	app := fiber.New()
 
+	app.Static("/","../public")
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: allowOrigins,
 		AllowMethods: "GET,POST,PUT,DELETE",
@@ -34,5 +40,5 @@ func main() {
 	router.InitRouter(app)
 
 	log.Println("Server is starting on port 3000...")
-	app.Listen(":3000")
+	app.Listen(":"+port)
 }
