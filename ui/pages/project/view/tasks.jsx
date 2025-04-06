@@ -63,7 +63,7 @@ export class Page extends RumiousComponent {
 		              	<td>{data.createAt}</td>
 										<td class="d-flex align-center" >
 											<button class="btn btn-icon material-icons">play_arrow</button>
-											<button class="btn btn-icon material-icons">edit</button>
+											<button onClick={()=> this.router.redirect(`/project/${this.currentProjectID}/task/${data.id}/edit`)} class="btn btn-icon material-icons">edit</button>
 											<button onClick={()=> this.onDeleteBtnClick(data.id)} class="btn btn-icon material-icons">delete</button>
 										</td>
 		              </tr>

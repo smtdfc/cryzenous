@@ -40,6 +40,11 @@ export default function(app) {
           routerLazy(() => import('../pages/project/task/create.jsx'))
         ]
       },
+      '/project/:project_id/task/:task_id/edit': {
+        components: [
+          routerLazy(() => import('../pages/project/task/edit.jsx'))
+        ]
+      },
 
     }
   });
