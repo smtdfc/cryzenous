@@ -1,9 +1,8 @@
-import { RumiousComponent,createElementRef, createArrayState } from 'rumious';
+import { RumiousComponent,createElementRef, createArrayState} from 'rumious';
 import { RumiousUITab } from 'rumious-ui';
 
 export class ProjectViewWrapper extends RumiousComponent {
   static tag = "cryzenous-project-view";
-  
   onCreate() {
     this.router = this.props.router;
     this.tabRef = createElementRef();
@@ -11,7 +10,7 @@ export class ProjectViewWrapper extends RumiousComponent {
     this.tabs = [
       { name: "Overview", pattern: "/project/view/:id/overview", active: false },
       { name: "Deployment", pattern: "/project/view/:id/deployment", active: false },
-      { name: "Team", pattern: "/project/view/:id/team", active: false },
+      { name: "Tasks", pattern: "/project/view/:id/task", active: false },
     ]
   }
   

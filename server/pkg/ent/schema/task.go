@@ -9,25 +9,24 @@ import(
   "entgo.io/ent/schema/edge"
 )
 
-type Project struct {
+type Task struct {
     ent.Schema
 }
 
 
-func (Project) Fields() []ent.Field {
+func (Task) Fields() []ent.Field {
     return []ent.Field{
         field.UUID("id", uuid.UUID{}).Default(uuid.New),
         field.String("name"),
         field.String("status").Default("active"),
-				field.String("mode").Default("normal"),
         field.String("metadata").Default("{}"),
         field.String("createAt").StorageKey("create_at").Default(time.Now().Format(time.RFC3339)).Immutable(),
-        field.String("owner").Optional().Nillable(),
+        field.UUID("projectID",uuid.UUID{}).Default(uuid.New).StorageKey("project_tasks").Optional().Nillable(),
     }
 }
 
-func (Project) Edges() []ent.Edge {
+func (Task) Edges() []ent.Edge {
     return []ent.Edge{
-        edge.To("tasks", Task.Type),
+        edge.From("project", Project.Type).Ref("tasks").Field("projectID").Unique(),
     }
 }

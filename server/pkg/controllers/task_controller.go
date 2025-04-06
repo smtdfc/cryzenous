@@ -7,11 +7,12 @@ import (
 	
 )
 
-type ProjectsController struct{}
+type TaskController struct{}
 
-func (ProjectsController) Create(c *fiber.Ctx) error {
+func (TaskController) Create(c *fiber.Ctx) error {
 	var request struct {
 		Name     string  `json:"name"`
+		ProjectID string  `json:"projectID"`
 	}
 
 	if err := c.BodyParser(&request); err != nil {
@@ -22,25 +23,26 @@ func (ProjectsController) Create(c *fiber.Ctx) error {
 		})
 	}
 
-	project, err := services.ProjectService{}.Create(request.Name)
+	task, err := services.TaskService{}.Create(request.Name, request.ProjectID)
 	if err != nil {
-		log.Println("Error creating project:", err)
+		log.Println("Error creating task:", err)
 		return c.Status(400).JSON(map[string]interface{}{
 			"status": "error",
-			"message": "Failed to create project",
+			"message": "Failed to create task",
 		})
 	}
 
 	return c.Status(200).JSON(map[string]interface{}{
 		"status": "success",
 		"results": map[string]interface{}{
-			"project": project,
+			"task": task,
 		},
 	})
 }
 
-func (ProjectsController) List(c *fiber.Ctx) error {
+func (TaskController) List(c *fiber.Ctx) error {
 	var request struct {
+		ProjectID string  `json:"projectID"`
 		Limit     int  `json:"limit"`
 		Offset int `json:"offset"`
 	}
@@ -53,56 +55,36 @@ func (ProjectsController) List(c *fiber.Ctx) error {
 		})
 	}
 
-	projects, err := services.ProjectService{}.List()
-	if err != nil {
-		log.Println("Error getting project:", err)
-		return c.Status(400).JSON(map[string]interface{}{
-			"status": "error",
-			"message": "Failed to getting project",
-		})
-	}
-
-	return c.Status(200).JSON(map[string]interface{}{
-		"status": "success",
-		"results": map[string]interface{}{
-			"list": projects,
-		},
-	})
-}
-
-func (ProjectsController) Info(c *fiber.Ctx) error {
-	var request struct {
-		ID     string  `json:"id"`
-	}
-
-	if err := c.BodyParser(&request); err != nil {
-	  log.Println(err)
-		return c.Status(fiber.StatusBadRequest).JSON(map[string]interface{}{
-			"status": "error",
-			"message": "Invalid request body",
-		})
-	}
-
-	project, err := services.ProjectService{}.Info(request.ID)
+	_, err := services.ProjectService{}.Info(request.ProjectID)
 	if err != nil {
 		log.Println("Error get info of project:", err)
 		return c.Status(400).JSON(map[string]interface{}{
 			"status": "error",
-			"message": "Failed to get info of project",
+			"message": "Invalid project ID",
+		})
+	}
+	
+	tasks, err := services.TaskService{}.List(request.ProjectID)
+	if err != nil {
+		log.Println("Error getting task:", err)
+		return c.Status(400).JSON(map[string]interface{}{
+			"status": "error",
+			"message": "Failed to getting task",
 		})
 	}
 
 	return c.Status(200).JSON(map[string]interface{}{
 		"status": "success",
 		"results": map[string]interface{}{
-			"info": project,
+			"list": tasks,
 		},
 	})
 }
 
-func (ProjectsController) Delete(c *fiber.Ctx) error {
+func (TaskController) Delete(c *fiber.Ctx) error {
 	var request struct {
 		ID     string  `json:"id"`
+		ProjectID     string  `json:"projectID"`
 	}
 
 	if err := c.BodyParser(&request); err != nil {
@@ -113,7 +95,16 @@ func (ProjectsController) Delete(c *fiber.Ctx) error {
 		})
 	}
 
-	_, err := services.ProjectService{}.Delete(request.ID)
+	_, err := services.ProjectService{}.Info(request.ProjectID)
+	if err != nil {
+		log.Println("Error get info of project:", err)
+		return c.Status(400).JSON(map[string]interface{}{
+			"status": "error",
+			"message": "Invalid project ID",
+		})
+	}
+	
+	_, err = services.TaskService{}.Delete(request.ID,request.ProjectID)
 	if err != nil {
 		return c.Status(400).JSON(map[string]interface{}{
 			"status": "error",

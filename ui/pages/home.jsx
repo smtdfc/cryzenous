@@ -16,16 +16,8 @@ export class Page extends RumiousComponent {
 		this.isDataLoaded = createState(false);
 		this.emptyAnnounmentRef = createElementRef();
 		this.projects = AppContext.get("projects");
-		
 	}
 	
-	onChange(data) {
-		console.log(this.id)
-		return <li onClick={()=> this.app.router.redirect(`/project/view/${data.id}/overview`)} class="list-item justify-start" style="gap:10px">
-                   <i class="material-icons">inventory_2</i> {data.name}
-           </li>
-		
-	}
 	async onRender() {
 		try {
 			await CryzenousProjectManagerService.fetch();
@@ -63,9 +55,11 @@ export class Page extends RumiousComponent {
           </div> 
           <br/>
           <ul bind:show="$isDataLoaded">
-            {
-              syncArray(this.projects,this.onChange.bind(this))
-            }
+            {syncArray(this.projects,(data) => {
+	              return <li onClick={()=> this.app.router.redirect(`/project/view/${data.id}/overview`)} class="list-item justify-start" style="gap:10px">
+	                   <i class="material-icons">inventory_2</i> {data.name}
+          			</li>
+             })}
           </ul>
           <div class="spinner-loader loader" bind:hide="$isDataLoaded" />
           <div 

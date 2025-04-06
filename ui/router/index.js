@@ -30,6 +30,16 @@ export default function(app) {
           routerLazy(() => import('../pages/project/view/deployment.jsx'))
         ]
       },
+      '/project/view/:id/task': {
+        components: [
+          routerLazy(() => import('../pages/project/view/tasks.jsx'))
+        ]
+      },
+      '/project/:id/task/create': {
+        components: [
+          routerLazy(() => import('../pages/project/task/create.jsx'))
+        ]
+      },
 
     }
   });
