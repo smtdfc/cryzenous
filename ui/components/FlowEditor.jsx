@@ -1,6 +1,7 @@
 import { RumiousComponent, createElementRef, createContext } from 'rumious';
 import { CryzenousFlowEditContainer } from '@helpers/flowEditor/container.js';
 import { NodeSelect } from './NodeSelect.jsx';
+import {FabContainer} from './FabContainer.jsx';
 
 export class FlowEditor extends RumiousComponent {
 	static tag = "cryzenous-flow-editor";
@@ -21,7 +22,12 @@ export class FlowEditor extends RumiousComponent {
 		return (
 			<>
         <div class="flow-edit-container" ref="$flowEditContainerRef"></div>
-        <button class="fab material-icons" onClick={()=> this.context.emit("node:select")}>add</button>
+				<FabContainer
+					fabs={[
+						{icon:"add",onClick:()=> this.context.emit("node:select")},
+						{icon:"save",onClick:()=> this.context.emit("node:select")},
+					]}
+				/>
         <NodeSelect context={this.context} />
       </>
 		);
